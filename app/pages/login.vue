@@ -2,7 +2,8 @@
 import LoginCard from "~~/composables/LoginCard.vue";
 
 definePageMeta({
-  hideSidebar: true
+  hideSidebar: true,
+  noAuth: true,
 })
 </script>
 
@@ -23,8 +24,7 @@ definePageMeta({
 <style scoped>
 .login-grid {
   width: 100%;
-  min-height: 100vh;
-  padding: 20px;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;

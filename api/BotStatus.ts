@@ -5,4 +5,5 @@ export interface BotStatus {
     version: string;
     username: string;
     server: string;
+    available: boolean;
 }

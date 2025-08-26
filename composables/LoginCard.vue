@@ -8,6 +8,8 @@ import {
 
 import { Eye, EyeOff } from '@vicons/ionicons5'
 
+import { login } from "~~/api/auth";
+
 const router = useRouter()
 const formRef = ref<FormInst | null>(null)
 const password = ref("")
@@ -29,10 +31,7 @@ const onSubmit = async () => {
 
   loading.value = true
   try {
-    await $fetch("/api/login", {
-      method: "POST",
-      body: { password: password.value }
-    })
+    await login(password.value)
     await router.push("/")
   } catch (e: any) {
     errorMsg.value = e?.data?.message || e?.message || "登录失败，请稍后重试"

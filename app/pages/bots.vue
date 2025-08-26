@@ -13,9 +13,24 @@ const showCreateDialog = ref(false)
 
 const dialog = useDialog()
 
-onMounted(async () => {
-  data.value = await getBots();
+let timerId: number | undefined
+
+
+onMounted(() => {
+  refresh()
+  timerId = window.setInterval(() => {
+    refresh()
+  }, 10000)
+
 });
+
+onUnmounted(() => {
+  if (timerId !== undefined) {
+    clearInterval(timerId)
+    timerId = undefined
+  }
+})
+
 
 async function refresh() {
   data.value = await getBots();

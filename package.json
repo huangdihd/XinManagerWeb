@@ -1,0 +1,24 @@
+{
+  "name": "nuxt-app",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@nuxt/ui": "3.3.2",
+    "@sfirew/minecraft-motd-parser": "^1.1.6",
+    "@vicons/ionicons5": "^0.13.0",
+    "axios": "^1.11.0",
+    "naive-ui": "^2.42.0",
+    "nuxt": "^4.0.3",
+    "nuxtjs-naive-ui": "^1.0.2",
+    "typescript": "^5.9.2",
+    "vue": "^3.5.18",
+    "vue-router": "^4.5.1"
+  }
+}
