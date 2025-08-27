@@ -1,3 +1,20 @@
+<!--
+  -   Copyright (C) 2025 huangdihd
+  -
+  -   This program is free software: you can redistribute it and/or modify
+  -   it under the terms of the GNU General Public License as published by
+  -   the Free Software Foundation, either version 3 of the License, or
+  -   (at your option) any later version.
+  -
+  -   This program is distributed in the hope that it will be useful,
+  -   but WITHOUT ANY WARRANTY; without even the implied warranty of
+  -   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  -   GNU General Public License for more details.
+  -
+  -   You should have received a copy of the GNU General Public License
+  -   along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
 <script setup lang="ts">
 
 import { NCard, NSpace, NGrid, NGridItem } from "naive-ui";
@@ -76,7 +93,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <NSpace style="gap: 16px;width: 100%;margin: 24px;height: calc(100vh - 48px)" vertical>
+  <NSpace style="gap: 16px;width: 100%;padding: 24px;height: calc(100vh - 48px);overflow: auto" vertical>
     <NCard style="box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12)">
       <h3 style="margin: 0"><strong>首页</strong></h3>
     </NCard>
