@@ -235,6 +235,7 @@ onMounted(async () => {
       <template #header>
         <strong>关于</strong>
       </template>
+      <p>本项目使用GPLv3协议开源</p>
       <p>作者: <NButton tag="a" href="https://github.com/huangdihd" target="_blank" quaternary>
         huangdihd
       </NButton></p>

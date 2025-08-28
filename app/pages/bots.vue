@@ -59,17 +59,16 @@ function afterCreate(bot: BotStatus) {
   refresh()
 }
 
-function deleteBot(bot: BotStatus) {
+function onDeleteBot(bot: BotStatus) {
   dialog.warning({
     title: '操作确认',
-    content: '你确定要删除Bot ' + bot.username + ' 吗？',
+    content: '你确定要删除Bot ' + bot?.username + ' 吗？',
     positiveText: '确定',
     negativeText: '取消',
     onPositiveClick: async () => {
+      console.log("eee")
       await deleteBot(bot.id)
       await refresh()
-    },
-    onNegativeClick: () => {
     }
   })
 }
@@ -100,7 +99,7 @@ function deleteBot(bot: BotStatus) {
     <NGrid style="margin-top: -3px;padding-top: 3px" :cols="3" x-gap="16" y-gap="16">
       <NGridItem class="BotCard"  v-for="bot in data" :key="bot.id">
         <NButton type="error" ghost style="--n-border-focus: none;--n-border-pressed: none;--n-border: none;--n-border-hover: none;float: right;margin-bottom: -35px;margin-right: -7.5px;z-index: 2"
-                 @click="deleteBot(bot)"
+                 @click="onDeleteBot(bot)"
                  title="删除"
         >
           <template #icon>
