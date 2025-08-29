@@ -74,7 +74,9 @@ let botsTimerId: number | undefined
 
 
 onMounted(() => {
-  refresh()
+  refreshServerInfo()
+  refreshBotCount()
+  refreshPerformance()
   bbttTimerId = window.setInterval(() => {
     refreshServerInfo()
   }, config.value.bbtt_fetch_interval)
