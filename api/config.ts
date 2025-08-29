@@ -17,6 +17,11 @@
 
 import http from "./http";
 
+export interface Config {
+    bbtt_fetch_interval: number;
+    bots_fetch_interval: number;
+}
+
 export async function getConfig() {
     return http.get('/config');
 }

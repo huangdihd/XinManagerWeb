@@ -22,7 +22,6 @@ import { lightTheme, darkTheme } from 'naive-ui'
 import { useTheme } from '../composables/useTheme.ts'
 import { useRoute } from "vue-router"
 import { ref } from 'vue'
-import { useNuxtApp } from '#app'
 import { check } from '~~/api/auth'
 
 const isLoading = ref(true)

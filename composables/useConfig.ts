@@ -15,21 +15,20 @@
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import {onMounted, watch } from 'vue'
 import {useState} from "nuxt/app";
+import {type Config, getConfig} from "../api/config";
+import {onMounted, watch} from "vue";
 
-export const useTheme = () => {
-    const theme = useState<string>('theme', () => 'dark')
+export const useConfig = () => {
+    const config = useState<Config>('config', () => ({
+        bbtt_fetch_interval: 10000,
+        bots_fetch_interval: 10000,
+    }))
 
-    onMounted(() => {
-        theme.value = localStorage.getItem('theme') ?? 'dark'
+    onMounted(async () => {
+        // @ts-ignore
+        config.value = await getConfig() as Config
     })
 
-    watch(theme, (v) => {
-        if (import.meta.client) {
-            localStorage.setItem('theme', v)
-        }
-    })
-
-    return theme
+    return config
 }

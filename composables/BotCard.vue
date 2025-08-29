@@ -25,11 +25,11 @@ const props = defineProps({
       }
     })
 
-const url = computed(() => props.bot.url)
-const name = computed(() => props.bot.username)
-const version = computed(() => props.bot.version)
-const server = computed(() => props.bot.server)
-const available = computed(() => props.bot.available)
+const url = computed(() => props.bot?.url)
+const name = computed(() => props.bot?.username)
+const version = computed(() => props.bot?.version)
+const server = computed(() => props.bot?.server)
+const available = computed(() => props.bot?.available)
 </script>
 <template>
   <NCard bordered class="bot-card">

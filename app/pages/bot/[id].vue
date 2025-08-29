@@ -16,13 +16,14 @@
   -->
 
 <script setup lang="ts">
-import {getBot, getBots} from '~~/api/bot';
+import {getBot} from '~~/api/bot';
 import { useRoute } from 'vue-router'
-import {h, ref} from 'vue'
+import {ref} from 'vue'
 import type { BotStatus } from '~~/api/BotStatus'
 import BotCard from "~~/composables/BotCard.vue";
 import {NGrid, NGridItem, NCard, NList, NListItem} from "naive-ui";
 import { useMessage } from 'naive-ui'
+import { useConfig } from "~~/composables/useConfig"
 import axios from "axios";
 
 const route = useRoute()
@@ -40,6 +41,7 @@ const ws = ref(null)
 const connecting = ref(false)
 
 const players = ref([])
+const config = useConfig()
 
 let timerId: number | undefined
 
@@ -91,7 +93,7 @@ async function refresh() {
 
 onMounted(async () => {
   await refresh()
-  timerId = setInterval(refresh, 10000)
+  timerId = setInterval(refresh, config.value.bots_fetch_interval)
   console.log(bot.value);
   connecting.value = true
   const container = document.getElementById('terminal') as HTMLElement;

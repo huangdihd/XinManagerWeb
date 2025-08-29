@@ -25,6 +25,7 @@ import { logout } from "~~/api/auth";
 import { useDialog } from "naive-ui";
 import { changePassword } from "~~/api/auth";
 import { getConfig, patchBbttFetchInterval, patchBotsFetchInterval, resetConfig } from "~~/api/config";
+import {useConfig} from "~~/composables/useConfig";
 
 const bbtt_fetch_interval = ref(10000)
 const bots_fetch_interval = ref(10000)
@@ -34,6 +35,7 @@ const loading = ref(false)
 
 const router = useRouter()
 const dialog = useDialog()
+const config = useConfig()
 
 function onLogout() {
   dialog.warning({
@@ -48,7 +50,7 @@ function onLogout() {
       } catch (error) {
         dialog.error({
           title: "退出登录失败",
-          content: e?.response?.data?.message || e?.message || "退出登录失败",
+          content: error?.response?.data?.message || error?.message || "退出登录失败",
           positiveText: "确定",
         })
         console.error("退出登录失败", error)
@@ -134,10 +136,9 @@ async function onReset() {
   })
 }
 
-onMounted(async () => {
-  const config = await getConfig()
-  bbtt_fetch_interval.value = config.bbtt_fetch_interval
-  bots_fetch_interval.value = config.bots_fetch_interval
+onMounted(() => {
+  bbtt_fetch_interval.value = config.value.bbtt_fetch_interval
+  bots_fetch_interval.value = config.value.bots_fetch_interval
 })
 
 </script>

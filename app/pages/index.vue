@@ -22,6 +22,7 @@ import { getbbtt } from "~~/api/bbtt";
 import { getPerformance } from "~~/api/performance";
 import McText from "~~/composables/McText.vue";
 import { getBots } from "~~/api/bot";
+import { useConfig } from "~~/composables/useConfig";
 
 
 const serverInfo = ref(null)
@@ -32,6 +33,8 @@ const JoinedBotCount = ref(0)
 
 const cpuUsage = ref(0)
 const memoryUsage = ref(0)
+
+const config = useConfig()
 
 async function refreshServerInfo() {
   try {
@@ -65,27 +68,30 @@ async function refreshPerformance() {
   console.log(performance)
 }
 
-function refresh() {
-  refreshServerInfo()
-  refreshBotCount()
-  refreshPerformance()
-}
 
-let timerId: number | undefined
+let bbttTimerId: number | undefined
+let botsTimerId: number | undefined
 
 
 onMounted(() => {
   refresh()
-  timerId = window.setInterval(() => {
-    refresh()
-  }, 10000)
-
+  bbttTimerId = window.setInterval(() => {
+    refreshServerInfo()
+  }, config.value.bbtt_fetch_interval)
+  botsTimerId = window.setInterval(() => {
+    refreshBotCount()
+    refreshPerformance()
+  }, config.value.bots_fetch_interval)
 });
 
 onUnmounted(() => {
-  if (timerId !== undefined) {
-    clearInterval(timerId)
-    timerId = undefined
+  if (bbttTimerId !== undefined) {
+    clearInterval(bbttTimerId)
+    bbttTimerId = undefined
+  }
+  if (botsTimerId !== undefined) {
+    clearInterval(botsTimerId)
+    bbttTimerId = undefined
   }
 })
 

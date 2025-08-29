@@ -23,12 +23,14 @@ import { NCard, NGrid, NGridItem, NButton, NIcon, NSpace } from "naive-ui";
 import BotCreator from "~~/composables/BotCreator.vue";
 import type {BotStatus} from "~~/api/BotStatus";
 import { useDialog } from "naive-ui";
+import { useConfig } from "~~/composables/useConfig"
 
 const data = ref([])
 
 const showCreateDialog = ref(false)
 
 const dialog = useDialog()
+const config = useConfig()
 
 let timerId: number | undefined
 
@@ -37,7 +39,7 @@ onMounted(() => {
   refresh()
   timerId = window.setInterval(() => {
     refresh()
-  }, 10000)
+  }, config.value.bots_fetch_interval)
 
 });
 
@@ -66,7 +68,6 @@ function onDeleteBot(bot: BotStatus) {
     positiveText: '确定',
     negativeText: '取消',
     onPositiveClick: async () => {
-      console.log("eee")
       await deleteBot(bot.id)
       await refresh()
     }
