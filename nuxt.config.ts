@@ -37,7 +37,9 @@ export default defineNuxtConfig({
     },
     nitro: {
         routeRules: {
-            '/api/**': { proxy: 'http://localhost:3001/**' }
+            '/api/**': {
+                proxy: `http://localhost:${process.env.XM_SERVER_PORT ?? 3001}/**`
+            }
         }
     }
 })
