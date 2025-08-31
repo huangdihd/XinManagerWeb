@@ -240,7 +240,7 @@ onMounted(() => {
       <p>作者: <NButton tag="a" href="https://github.com/huangdihd" target="_blank" quaternary>
         huangdihd
       </NButton></p>
-      <NButton tag="a" href="https://github.com/huangdihd/xin_manager" target="_blank" quaternary>
+      <NButton tag="a" href="https://github.com/huangdihd/xinManager" target="_blank" quaternary>
         <template #icon>
           <NIcon :size="20" color="#24292f">
             <LogoGithub />
